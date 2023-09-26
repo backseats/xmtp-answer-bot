@@ -79,6 +79,6 @@ const hostname = "0.0.0.0";
 // const port: number = parseInt(process.env.PORT) || 3000;
 
 app.listen(3000, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+  console.log(`Server running at http://${hostname}:${3000}/`);
   startListeningForMessages(ETHEREUM_ADDRESS_TO_LISTEN);
 });
