@@ -48,7 +48,7 @@ async function startListeningForMessages(address: string) {
 
                     if (response.data.statusCode === 200) {
                         // TODO Update copy
-                        await conversation.send("Congrats! Mint your POAP at https://poap.xyz/abc123");
+                        await conversation.send("Congrats! Mint your POAP at gsthttps://poap.xyz/abc123");
                     } else {
                       await conversation.send("There was a problem with your PIN. Please make sure your key word is correct and try again.");
                     }
@@ -76,7 +76,10 @@ async function startListeningForMessages(address: string) {
     }
 }
 
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+// const HOST = process.env.HOST || '0.0.0.0';  // Listen on all network interfaces by default
+const HOST = '0.0.0.0';  // Listen on all network interfaces by default
+
+app.listen(PORT, HOST, () => {
+    console.log(`Server is running on http://${HOST}:${PORT}`);
     startListeningForMessages(ETHEREUM_ADDRESS_TO_LISTEN);
 });
