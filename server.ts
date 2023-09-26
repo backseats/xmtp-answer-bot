@@ -8,7 +8,6 @@ import { Wallet } from 'ethers';
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
 
 // This is the wallet addres your users are messaging.
 // Ensure 1) It matches the PRIVATE_KEY in your .env and
@@ -76,10 +75,10 @@ async function startListeningForMessages(address: string) {
     }
 }
 
-// const HOST = process.env.HOST || '0.0.0.0';  // Listen on all network interfaces by default
-const HOST = '0.0.0.0';  // Listen on all network interfaces by default
+const hostname = "0.0.0.0";
+// const port: number = parseInt(process.env.PORT) || 3000;
 
-app.listen(PORT, HOST, () => {
-    console.log(`Server is running on http://${HOST}:${PORT}`);
-    startListeningForMessages(ETHEREUM_ADDRESS_TO_LISTEN);
+app.listen(3000, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+  startListeningForMessages(ETHEREUM_ADDRESS_TO_LISTEN);
 });
