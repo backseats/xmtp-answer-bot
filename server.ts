@@ -75,14 +75,11 @@ async function startListeningForMessages(address: string) {
     }
 }
 
-// const hostname = "[::]";
-// const port: number = parseInt(process.env.PORT) || 3000;
-const port = process.env.PORT || 3000;
+const hostname = "0.0.0.0";
+const port = 3000;
 
-app.listen(port, () => {
-  // console.log(`Server running at http://${hostname}:${3000}/`);
-  console.log(`Hello from port ${port}`)
+app.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${3000}/`);
+
   startListeningForMessages(ETHEREUM_ADDRESS_TO_LISTEN);
 });
-
-// app.listen(3000);
