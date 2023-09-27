@@ -40,14 +40,15 @@ async function startListeningForMessages(address: string) {
                 // Validate the PIN
                 try {
                     const response = await axios.post('https://sour-gnu-50.deno.dev/pin/validate', {
-                        pin: message.content
+                        pin: message.content,
+                        databaseType: 'airtable'
                     });
 
                     const conversation = await client.conversations.newConversation(message.senderAddress);
 
                     if (response.data.statusCode === 200) {
-                        // TODO Update copy
-                        await conversation.send("Congrats! Mint your POAP at https://poap.xyz/abc123");
+                        const { code } = response.data;
+                        await conversation.send(`Congrats! Mint your POAP at ${code}`);
                     } else {
                       await conversation.send("There was a problem with your PIN. Please make sure your key word is correct and try again.");
                     }
@@ -79,7 +80,7 @@ const hostname = "0.0.0.0";
 const port = 3000;
 
 app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${3000}/`);
+  console.log(`Server running at http://${hostname}:${port}/`);
 
   startListeningForMessages(ETHEREUM_ADDRESS_TO_LISTEN);
 });
