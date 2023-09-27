@@ -47,7 +47,7 @@ async function startListeningForMessages(address: string) {
 
                     if (response.data.statusCode === 200) {
                         // TODO Update copy
-                        await conversation.send("Congrats! Mint your POAP at gsthttps://poap.xyz/abc123");
+                        await conversation.send("Congrats! Mint your POAP at https://poap.xyz/abc123");
                     } else {
                       await conversation.send("There was a problem with your PIN. Please make sure your key word is correct and try again.");
                     }
