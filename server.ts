@@ -43,11 +43,11 @@ async function startListeningForMessages(address: string) {
                         pin: message.content,
                         databaseType: 'airtable'
                     });
+                    console.log('response!!!', response)
 
                     const conversation = await client.conversations.newConversation(message.senderAddress);
 
                     if (response.data.statusCode === 200) {
-                        console.log('response data', response.data)
                         const { code } = response.data;
                         await conversation.send(`Congrats! Mint your POAP at ${code}`);
                     } else {
