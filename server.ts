@@ -9,10 +9,10 @@ dotenv.config();
 
 const app = express();
 
-// This is the wallet addres your users are messaging.
-// Ensure 1) It matches the PRIVATE_KEY in your .env and
+// This is the wallet addres your users are messaging. Ensure:
+// 1) It matches the PRIVATE_KEY in your .env file
 // 2) it's on the XMTP network
-const ETHEREUM_ADDRESS_TO_LISTEN = "0x15633a0799b44745e00542D90BBADAfF4E9B85E7";
+const ETHEREUM_ADDRESS_TO_LISTEN = process.env.BOT_ADDRESS!;
 
 const loadWallet = () => {
   try {
@@ -39,11 +39,10 @@ async function startListeningForMessages(address: string) {
             if (/^\d{4}$/.test(message.content!)) {
                 // Validate the PIN
                 try {
-                    const response = await axios.post('https://sour-gnu-50.deno.dev/pin/validate', {
+                    const response = await axios.post('xmtp-pin-server.vercel.app/validatePIN', {
                         pin: message.content,
-                        databaseType: 'airtable'
+                        // databaseType: 'airtable'
                     });
-                    console.log('response!!!', response)
 
                     const conversation = await client.conversations.newConversation(message.senderAddress);
 
@@ -60,7 +59,7 @@ async function startListeningForMessages(address: string) {
 
             } else {
                 try {
-                    const response = await axios.post('https://sour-gnu-50.deno.dev/pin/get', {
+                    const response = await axios.post('https://xmtp-pin-server.vercel.app/getPIN', {
                         secret: message.content
                     });
 
@@ -68,6 +67,7 @@ async function startListeningForMessages(address: string) {
 
                     // Reply to the sender with the received PIN
                     const conversation = await client.conversations.newConversation(message.senderAddress);
+
                     await conversation.send(`Your PIN is: ${pin}`);
                 } catch (error) {
                     console.error('Error getting PIN:', error);
