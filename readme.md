@@ -7,3 +7,7 @@ This example implementation works with the [XMTP PIN Server](https://github.com/
 ## Deploy Instructions
 
 This server needs to listen persistently to the XMTP network so it can't be deployed to Vercel or a similar just-in-time runtime. Fly.io or Heroku would be appropriate places to deploy this server and shouldn't incur much cost due to its lightweight implementation.
+
+## Deploy
+
+Can be deployed with `fly deploy` by [@backseats](https://twitter.com/backseats_eth)
