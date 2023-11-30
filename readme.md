@@ -1,4 +1,4 @@
-# XMTP Simple PIN Server
+# XMTP Answer Bot
 
 An Express server that loads a wallet from a private key in `.env`,  listens for interactions to that address and responds accordingly.
 
