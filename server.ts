@@ -47,8 +47,9 @@ async function startListeningForMessages(address: string) {
                     const conversation = await client.conversations.newConversation(message.senderAddress);
 
                     if (response.data.statusCode === 200) {
-                        const { code } = response.data;
-                        await conversation.send(`Congrats! Mint your POAP at ${code}`);
+                        // const { code } = response.data;
+                        // await conversation.send(`Congrats! Mint your POAP at ${code}`);
+                        await conversation.send(`Congrats! Mint your POAP at http://POAP.xyz/claim/zimdan`);
                     } else {
                       await conversation.send("There was a problem with your PIN. Please make sure your key word is correct and try again.");
                     }
