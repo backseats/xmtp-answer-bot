@@ -39,7 +39,7 @@ async function startListeningForMessages(address: string) {
             if (/^\d{4}$/.test(message.content!)) {
                 // Validate the PIN
                 try {
-                    const response = await axios.post('xmtp-pin-server.vercel.app/validatePIN', {
+                    const response = await axios.post('https://xmtp-pin-server.vercel.app/validatePIN', {
                         pin: message.content,
                         // databaseType: 'airtable'
                     });
@@ -49,7 +49,7 @@ async function startListeningForMessages(address: string) {
                     if (response.data.statusCode === 200) {
                         // const { code } = response.data;
                         // await conversation.send(`Congrats! Mint your POAP at ${code}`);
-                        await conversation.send(`Congrats! Mint your POAP at http://POAP.xyz/claim/zimdan`);
+                        await conversation.send(`Congrats! Mint your POAP at https://POAP.xyz/claim/zimdan`);
                     } else {
                       await conversation.send("There was a problem with your PIN. Please make sure your key word is correct and try again.");
                     }
