@@ -63,7 +63,7 @@ async function startListeningForMessages(address: string) {
                         secret: message.content
                     });
 
-                    const pin = response.data;
+                    const { pin } = response.data;
 
                     // Reply to the sender with the received PIN
                     const conversation = await client.conversations.newConversation(message.senderAddress);
